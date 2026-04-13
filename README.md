@@ -1,12 +1,8 @@
+**THIS IS AN EXTENTION OF LRDM-POMDP BY TOBIAS KENNEDY https://github.com/Tobias-Kennedy/LRDM-POMDP**
+
 # LRDM-POMDP
 
 *A simulation of a remote mirroring network, using Partially Observable Markov Decision Processes (POMDPs) to optimise Non-Functional Requirement (NFR) satisfaction time and minimise latency.*
-
-**PLEASE NOTE: THERE IS ANOTHER BRANCH IN THIS REPO FOR THE LRDMSIM WITH MY ADDITIONS ALONG WITH A SEPERATE README EXPLAINING IT. PLEASE LOOK AT BOTH README'S.**
-
-**Author:** Tobias Kennedy  
-**Created:** April 2025  
-**Last updated:** 11 June 2025
 
 ---
 
@@ -68,9 +64,15 @@ max_bandwidth=8
 fault_probability=0.005
 
 # Added Parameters
-bw_thresh     # Bandwidth threshold used for POMDP decisions and graphs
-al_thresh     # Active link threshold used for POMDP decisions and graphs
-ttw_thresh    # Time to write threshold used for POMDP decisions and graphs
+bw_thresh           # Bandwidth threshold used for POMDP decisions and graphs
+al_thresh           # Active link threshold used for POMDP decisions and graphs
+ttw_thresh          # Time to write threshold used for POMDP decisions and graphs
+second_bw_thresh    # Bandwidth threshold used for updating the threshold
+second_al_thresh    # Active link threshold used for updating the thresholds
+second_ttw_thresh   # Time to write threshold used for updating the threshold
+third_bw_thresh     # Bandwidth threshold used for updating the threshold
+third_al_thresh     # Active link threshold used for updating the thresholds
+third_ttw_thresh    # Time to write threshold used for updating the threshold
 ```
 
 ### `domains/LRDM.POMDP`
@@ -109,3 +111,22 @@ Responsibilities:
 - Retrieves probes and effectors
 - Parses thresholds from `sim.conf` for dynamic graphing
 
+
+## Comparator
+
+To compare the performance of different POMDPs on multiple LRDMSim configurations:
+
+A Comparator package was created:
+`src/main/java/Comparator`
+
+Responsibilities:
+- Executing SolvePOMDP multiple times
+- collecting performance Data
+- Visualization of the performance Data
+
+## POMDP Generator
+
+To generate multiple variants of the LRDM.POMDP
+
+Python source code in:
+`src/pythonPOMDPGenerator`
